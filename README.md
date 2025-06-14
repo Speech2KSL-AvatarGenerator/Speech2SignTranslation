@@ -82,10 +82,10 @@ print(tokenizer.decode(output[0], skip_special_tokens=True))
 - 사전 학습 언어 모델 : `gogamza/kobart-base-v2` (한국어에 특화된 BART 구조의 사전학습 모델)
 - 토크나이저 : KoBARTTokenizer 사용, `<s>`, `</s>`, `<pad>` 특수 토큰 포함
 - 하이퍼파라미터 : 
-  - max_length: 128
-  - num_train_epochs: 3
-  - learning_rate: 5e-5
-  - warmup_steps: 500
-  - per_device_train_batch_size: 16
-  - gradient_accumulation_steps: 2
-  - fp16: True
+  - `max_length`: 128
+  - `num_train_epochs`: 3
+  - `learning_rate`: 5e-5
+  - `warmup_steps`: 500
+  - `per_device_train_batch_size`: 16
+  - `gradient_accumulation_steps`: 2
+  - `fp16`: `True`
