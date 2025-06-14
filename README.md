@@ -37,6 +37,8 @@ print(tokenizer.decode(output[0], skip_special_tokens=True))
 ```
 ## 데이터 증강
 입력 파일 형식 : train_file_sum.tsv (koreanText, sign_lang_sntenc 두 열로 구성)
+
+
 출력 파일 형식: train_augmented.tsv (기존 문장 + 생성된 문장 포함)
 
 
