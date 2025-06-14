@@ -40,7 +40,8 @@ print(tokenizer.decode(output[0], skip_special_tokens=True))
 - 훈련 목적: 일반 한국어 문장을 수어 문법 구조로 변환하는 Seq2Seq 모델 학습
 - 데이터셋 구성 : 국립국어원의 한국어-한국수어 병렬 말뭉치
 - 데이터 증강 방식: GPT 기반 말뭉치 증강
-| 구분    | 내용                                                     |
+
+  | 구분    | 내용                                                     |
 | ----- | ------------------------------------------------------ |
 | 목적    | 동일 수어 문장에 대해 다양한 한국어 표현 생성으로 데이터 다양성 확보 및 모델 일반화 성능 향상 |
 | 방법    | GPT 모델을 prompt-tunning하여 원문 의미 유지, 자연스럽고 다양한 표현 5개 생성 후 원본 데이터에 추가  | 
@@ -48,7 +49,7 @@ print(tokenizer.decode(output[0], skip_special_tokens=True))
 
 
 - 사전 학습 언어 모델 : gogamza/kobart-base-v2 (한국어에 특화된 BART 구조의 사전학습 모델)
-- 토크나이저 : KoBARTTokenizer 사용, <s>, </s>, <pad> 특수 토큰 포함
+- 토크나이저 : KoBARTTokenizer 사용, <\s>, <\/s>, <\pad> 특수 토큰 포함
 - 하이퍼파라미터 : 
   - max_length: 128
   - num_train_epochs: 3
