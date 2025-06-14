@@ -13,10 +13,10 @@
 
 
 ## 사용 기술
-토크나이저 : KoBARTTokenizer
-학습 프레임워크 : pytorch, huggingface transformers
-모델 아키텍쳐 : KoBART (gogamza/kobart-base-v2)
-데이터셋 : 국립 국어원 한국어-한국수어 데이터
+- 토크나이저 : KoBARTTokenizer
+- 학습 프레임워크 : pytorch, huggingface transformers
+- 모델 아키텍쳐 : KoBART (gogamza/kobart-base-v2)
+- 데이터셋 : 국립 국어원 한국어-한국수어 데이터
 
 ## 모델 설명
 - 기반 모델: KoBART (Korean BART)
@@ -40,7 +40,6 @@ print(tokenizer.decode(output[0], skip_special_tokens=True))
 - 훈련 목적: 일반 한국어 문장을 수어 문법 구조로 변환하는 Seq2Seq 모델 학습
 - 데이터셋 구성 : 국립국어원의 한국어-한국수어 병렬 말뭉치
 - 데이터 증강 방식: GPT 기반 말뭉치 증강
-
 | 구분    | 내용                                                     |
 | ----- | ------------------------------------------------------ |
 | 목적    | 동일 수어 문장에 대해 다양한 한국어 표현 생성으로 데이터 다양성 확보 및 모델 일반화 성능 향상 |
