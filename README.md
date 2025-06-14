@@ -15,7 +15,7 @@
 ## 사용 기술
 - 토크나이저 : KoBARTTokenizer
 - 학습 프레임워크 : pytorch, huggingface transformers
-- 모델 아키텍쳐 : KoBART (gogamza/kobart-base-v2)
+- 모델 아키텍쳐 : KoBART (`gogamza/kobart-base-v2`)
 - 데이터셋 : 국립 국어원 한국어-한국수어 데이터
 
 ## 모델 설명
@@ -36,6 +36,9 @@ output = model.generate(**inputs, max_new_tokens=64)
 print(tokenizer.decode(output[0], skip_special_tokens=True))
 ```
 ## 데이터 증강
+입력 파일 형식 : train_file_sum.tsv (koreanText, sign_lang_sntenc 두 열로 구성)
+출력 파일 형식: train_augmented.tsv (기존 문장 + 생성된 문장 포함)
+
 
 | 구분    | 내용                                                     |
 | ----- | ------------------------------------------------------ |
@@ -44,12 +47,34 @@ print(tokenizer.decode(output[0], skip_special_tokens=True))
 | 사용 도구 | OpenAI GPT-3.5-turbo API               |  
 
 
+**데이터 예시**
+입력
+| koreanText           | sign_lang_sntenc      |
+|----------------------|-----------------------|
+| 네 많이 걱정하셨을 텐데요 | 걱정/많다/같다[맞다]    |
+
+출력
+| koreanText           | sign_lang_sntenc      |
+|----------------------|-----------------------|
+| 네 많이 걱정하셨을 텐데요 | 걱정/많다/같다[맞다]    |
+| 많이 걱정되셨죠?       | 걱정/많다/같다[맞다]    |
+| 걱정이 크셨을 것 같아요  | 걱정/많다/같다[맞다]    |
+| ...                  | ...                   |
+
+
+**프롬프트**
+"""다음 문장의 의미를 유지하면서 자연스럽고 다양한 표현으로 바꾼 문장을 5개 만들어줘. 문장은 너무 길지 않게 해주고, 일상적인 톤으로 써줘. 각 문장은 줄 바꿈해서 출력해줘.
+
+문장: {text}
+"""
+
+
 ## 학습 노트
 - 훈련 목적: 일반 한국어 문장을 수어 문법 구조로 변환하는 Seq2Seq 모델 학습
 - 데이터셋 구성 : 국립국어원의 한국어-한국수어 병렬 말뭉치
 - 데이터 증강 방식: GPT 기반 말뭉치 증강
 
-- 사전 학습 언어 모델 : gogamza/kobart-base-v2 (한국어에 특화된 BART 구조의 사전학습 모델)
+- 사전 학습 언어 모델 : `gogamza/kobart-base-v2` (한국어에 특화된 BART 구조의 사전학습 모델)
 - 토크나이저 : KoBARTTokenizer 사용, `<s>`, `</s>`, `<pad>` 특수 토큰 포함
 - 하이퍼파라미터 : 
   - max_length: 128
