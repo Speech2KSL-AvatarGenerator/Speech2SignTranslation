@@ -50,6 +50,8 @@ print(tokenizer.decode(output[0], skip_special_tokens=True))
 
 
 **데이터 예시**
+
+
 입력
 | koreanText           | sign_lang_sntenc      |
 |----------------------|-----------------------|
